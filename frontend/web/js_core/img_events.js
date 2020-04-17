@@ -21,19 +21,38 @@
         let canvasWidth = parseInt($('.container .h-100').css('width'));
         let bottomMenuHeight = parseInt($('.menu-bottom').css('height'));
 
-        console.log("Img width: " + imgWidth);
-        console.log("Canvas width: " + canvasWidth);
-        console.log("Menu width: " + bottomMenuHeight);
+      
+        
+        
+   
 
         if (imgWidth < canvasWidth) {
             let scale = Math.round(canvasWidth * 90 / imgWidth);
             $('.scale').val(scale);
             $('.main-svg').css('transform', `scale(${scale / 100})`);
         } else {
+            $('.scale').val(80);
+            $('.main-svg').css('transform', `scale(0.8)`);
+        }
+        
+        
+        
+        
+       /* if (imgWidth > canvasWidth) {
             let scale = Math.round(canvasWidth * 90 / imgWidth);
             $('.scale').val(scale);
             $('.main-svg').css('transform', `scale(${scale / 100})`);
+        } else {
+            $('.scale').val(70);
+            $('.main-svg').css('transform', `scale(0.7)`);
         }
+        */
+        
+        
+        
+        
+        
+        
 
         $('[data-set="true"]').click((event) => {
             let clickCounter = +$(event.target).attr('clickCounter');

@@ -42,9 +42,11 @@
 
                     </div>
 
-<button class="btn btn-succrss show-more else">Показать еще</button>
+
 
                 </div>
+
+<button class="btn btn-succrss show-more else">Показать еще</button>
 
             </div>
             </div>
@@ -110,6 +112,13 @@
 
         let imgWidth = parseInt($('.main-svg').css('width'));
         let canvasWidth = parseInt($('.container .h-100').css('width'));
+          
+        
+        let topMenuHeight = parseInt($('.top-menu').css('height'));
+    let bottomMenuHeight = parseInt($('.menu-bottom').css('height'));
+    let canvasHeight = parseInt($('.container .h-100').css('height'));
+    let mainHeight = canvasHeight - bottomMenuHeight - topMenuHeight;
+    console.log('topMenuHeight');
 
         console.log("Img width: " + imgWidth);
         console.log("Canvas width: " + canvasWidth);

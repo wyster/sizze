@@ -38,9 +38,9 @@ const updateCurrentFont = () => {
 };
 
 
-/*const updateCurrentFontSize = () => {
-    $('.current-font-size').html($(CURRENT_EDIT_ELEMENT).css('font-size').split(',')[0])
-};*/
+const updateCurrentFontSize = () => {
+$('.current-font-size').val($(CURRENT_EDIT_ELEMENT).css('font-size').replace('px', ''))
+}; 
 
 const divToBr = () => {
     let content = $(CURRENT_EDIT_ELEMENT).html();
@@ -190,13 +190,13 @@ const editableHandler = (event) => {
 
         // get drag event
         frame.translate = drag.beforeTranslate;
-        target.style.transform = `translate(${drag.beforeTranslate[0]}px, ${drag.beforeTranslate[1]}px)`;
+        target.style.transform = `translate(${drag.beforeTranslate[0]}px, ${drag.beforeTranslate[1]}px`;
     }).on("resizeEnd", ({ target, isDrag, clientX, clientY }) => {
         console.log("onResizeEnd", target, isDrag);
     });
     draggable.on("rotateStart", ({set }) => {
         set(frame.rotate);
-    }).on("rotate", ({ target, beforeRotate }) => {
+    }).on("rotate", ({ target, beforeRotate,  }) => {
         frame.rotate = beforeRotate;
         target.style.transform = `rotate(${beforeRotate}deg)`;
         $('.rotate-input').val(Math.round(beforeRotate));
@@ -233,6 +233,7 @@ const editableHandler = (event) => {
 
     if ($(CURRENT_EDIT_ELEMENT).attr('data-type') == 'text') {
         updateCurrentFont();
+        updateCurrentFontSize();
         textRect();
     } else {
         defaultRect();
@@ -245,6 +246,7 @@ const editableHandler = (event) => {
 
     $(CURRENT_EDIT_ELEMENT).keyup((event) => {
         draggable.updateRect();
+        
     });
     console.log('Update editable element');
 };
@@ -500,11 +502,14 @@ $('.size-tool-button').click((event) => {
     let imgWidth = parseInt($('.main-svg').css('width'));
     let imgHeight = parseInt($('.canvas1').css('height'));
     let canvasWidth = parseInt($('.container .h-100').css('width'));
-    let topMenuHeight = parseInt($('.top-menu').css('height'));
+  /*  let topMenuHeight = parseInt($('.top-menu').css('height'));
     let bottomMenuHeight = parseInt($('.menu-bottom').css('height'));
     let canvasHeight = parseInt($('.container .h-100').css('height'));
     let mainHeight = canvasHeight - bottomMenuHeight - topMenuHeight;
-     if (currentScale < 100) {
+    console.log('topMenuHeight');*/
+    
+    
+ if (currentScale < 100) {
 
     if (isPlus) {
         currentScale += 10;
@@ -512,14 +517,21 @@ $('.size-tool-button').click((event) => {
         currentScale -= 10;
     }
      } else {
-        currentScale=100;
          if (isPlus) {
         currentScale += 0;
     } else if (currentScale > 10) {
         currentScale -= 10;
     }
-     } 
-
+     }
+     
+     
+    
+  /*   if (isPlus) {
+        currentScale += 10;
+    } else if (currentScale > 10) {
+        currentScale -= 10;
+    }
+*/
     
 
     
